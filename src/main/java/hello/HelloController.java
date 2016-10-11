@@ -16,11 +16,19 @@ public class HelloController {
     public String index() {
 
         RestTemplate restTemplate = new RestTemplate();
-        Quote quote = restTemplate.getForObject("http://gturnquist-quoters.cfapps.io/api/random", Quote.class);
+        //Quote quote = restTemplate.getForObject("http://gturnquist-quoters.cfapps.io/api/random", Quote.class);
+        Quote quote = restTemplate.getForObject("http://localhost:8082/greeting", Quote.class);
         log.info(quote.toString());
         System.out.println(quote.toString());
 
         return quote.toString();
     }
-    
+
+
+    @RequestMapping("/divers")
+    public String hi() {
+        log.info("Using another route");
+        System.out.println("Using another route");
+        return "Using another route";
+    }
 }
